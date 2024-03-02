@@ -19,6 +19,15 @@ config/icon="res://assets/icon.png"
 
 window/stretch/mode="viewport"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/github_to_itch/plugin.cfg")
+
+[github_to_itch]
+
+config/itch_username="stumpy-dog-studios"
+config/itch_project_name="baby-game"
+
 [input]
 
 controller_x={
