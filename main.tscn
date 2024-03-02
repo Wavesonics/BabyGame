@@ -27,7 +27,6 @@ script = ExtResource("1_muxl5")
 position = Vector2(0, -1)
 
 [node name="SkyNight" type="Sprite2D" parent="Background"]
-visible = false
 position = Vector2(578, 326)
 scale = Vector2(2, 2)
 texture = ExtResource("2_43i1m")
