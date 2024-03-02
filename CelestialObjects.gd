@@ -28,7 +28,7 @@ func _process(delta: float) -> void:
 	var axis_value = Input.get_joy_axis(0, 0)
 	
 	# Dead zone for stick drift
-	if axis_value > 0.1:
+	if abs(axis_value) > 0.1:
 		# Update the angle based on the joystick's horizontal input.
 		angle += speed * axis_value * delta
 	# If no stick input, animate on our own
