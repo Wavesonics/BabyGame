@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://cj5txfcf1u1l1"]
+
+[ext_resource type="Script" path="res://cat/Cat.gd" id="1_1s0ru"]
+[ext_resource type="Texture2D" uid="uid://cvp8i7hp0cq7e" path="res://cat/cat.png" id="1_dhqk7"]
+[ext_resource type="AudioStream" uid="uid://drymrjvlwx7ma" path="res://cat/meow.mp3" id="3_mrxqo"]
+
+[node name="Cat" type="Sprite2D"]
+scale = Vector2(0.195, 0.195)
+texture = ExtResource("1_dhqk7")
+script = ExtResource("1_1s0ru")
+
+[node name="Meow" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_mrxqo")

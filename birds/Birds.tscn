@@ -1,0 +1,12 @@
+[gd_scene load_steps=4 format=3 uid="uid://c0p1j56abl26w"]
+
+[ext_resource type="Texture2D" uid="uid://dqcovt5pil8dd" path="res://birds/birds.png" id="1_bswty"]
+[ext_resource type="Script" path="res://birds/Birds.gd" id="2_fnf5m"]
+[ext_resource type="AudioStream" uid="uid://hvc67bg6lf5a" path="res://birds/birds.mp3" id="3_2vmjo"]
+
+[node name="Birds" type="Sprite2D"]
+texture = ExtResource("1_bswty")
+script = ExtResource("2_fnf5m")
+
+[node name="BirdsChirping" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_2vmjo")

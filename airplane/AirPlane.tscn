@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://cq2qftp7n45ms"]
+
+[ext_resource type="Script" path="res://airplane/AirPlane.gd" id="1_1tj6h"]
+[ext_resource type="Texture2D" uid="uid://bfhk1igadialf" path="res://airplane/airplane.png" id="1_lw3eh"]
+[ext_resource type="AudioStream" uid="uid://2egaeos3jena" path="res://airplane/airplane.mp3" id="3_ft461"]
+
+[node name="AirPlane" type="Sprite2D"]
+scale = Vector2(0.427892, 0.427892)
+texture = ExtResource("1_lw3eh")
+script = ExtResource("1_1tj6h")
+
+[node name="PlaneNoise" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_ft461")
