@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://c6exry1a7xhex"]
+
+[ext_resource type="Texture2D" uid="uid://cuk6voiye6gcx" path="res://entities/chicken/chicken.png" id="1_2fknp"]
+[ext_resource type="AudioStream" uid="uid://dydwvvuq4yaw7" path="res://entities/chicken/chicken.mp3" id="2_kcrkh"]
+[ext_resource type="Script" path="res://entities/chicken/Chicken.gd" id="2_phcft"]
+
+[node name="Chicken" type="Sprite2D"]
+scale = Vector2(0.259, 0.227)
+texture = ExtResource("1_2fknp")
+script = ExtResource("2_phcft")
+
+[node name="Cluck" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_kcrkh")

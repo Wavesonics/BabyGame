@@ -4,6 +4,9 @@ extends Node2D
 @export var moon: Sprite2D
 @export var dayColor: ColorRect
 @export var nightColor: ColorRect
+@export var skyDay: Sprite2D
+@export var skyNight: Sprite2D
+
 
 # The radius of the circle along which the sprite will move.
 var radius: float = 250.0
@@ -25,7 +28,7 @@ func _process(delta: float) -> void:
 	var axis_value = Input.get_joy_axis(0, 0)
 	
 	# Dead zone for stick drift
-	if axis_value > 0.1:
+	if abs(axis_value) > 0.1:
 		# Update the angle based on the joystick's horizontal input.
 		angle += speed * axis_value * delta
 	# If no stick input, animate on our own
@@ -52,16 +55,20 @@ func _process(delta: float) -> void:
 	var percentDay = map_angle_to_unit_range(angle)
 	
 	# Day time
-	if percentDay < 0.25 and percentDay > 0.75:
-		dayColor.color.a = 0.2
+	if percentDay < 0.25 or percentDay > 0.75:
+		dayColor.color.a = 0.01
+		skyDay.show()
 	else:
 		dayColor.color.a = 0.0
+		skyDay.hide()
 	
 	# Night time
 	if percentDay > 0.25 and percentDay < 0.75:
 		nightColor.color.a = 0.5
+		skyNight.show()
 	else:
 		nightColor.color.a = 0.0
+		skyNight.hide()
 
 func map_angle_to_unit_range(angle):
 	# Offset the angle by 90 degrees (PI/2 radians)
