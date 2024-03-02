@@ -1,7 +1,6 @@
-[gd_scene load_steps=17 format=3 uid="uid://bv87x84cfrbyp"]
+[gd_scene load_steps=19 format=3 uid="uid://bv87x84cfrbyp"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_muxl5"]
-[ext_resource type="Texture2D" uid="uid://cu6vpvdxspy2x" path="res://assets/arrow.png" id="2_jvblf"]
 [ext_resource type="Texture2D" uid="uid://bif3fr6pv6jhq" path="res://assets/background/1.png" id="3_mydq3"]
 [ext_resource type="Texture2D" uid="uid://blcwbld1r4ma" path="res://assets/background/3.png" id="4_4qynr"]
 [ext_resource type="Texture2D" uid="uid://urqi7jkgt4py" path="res://assets/background/2.png" id="4_n4pr0"]
@@ -9,17 +8,19 @@
 [ext_resource type="Texture2D" uid="uid://wf62gr83rdfa" path="res://assets/background/moon.png" id="5_xociv"]
 [ext_resource type="Script" path="res://CelestialObjects.gd" id="6_jsfoj"]
 [ext_resource type="Texture2D" uid="uid://d0rov5fwlqvto" path="res://assets/background/4.png" id="7_ay8jm"]
-[ext_resource type="PackedScene" uid="uid://c1fa4m5wl7jog" path="res://cow/Cow.tscn" id="8_yvqox"]
-[ext_resource type="PackedScene" uid="uid://c6exry1a7xhex" path="res://chicken/Chicken.tscn" id="9_2jkje"]
-[ext_resource type="PackedScene" uid="uid://drevi0f0x5ap6" path="res://bus/Bus.tscn" id="11_v2a1g"]
-[ext_resource type="PackedScene" uid="uid://cj5txfcf1u1l1" path="res://cat/Cat.tscn" id="12_tgix4"]
-[ext_resource type="PackedScene" uid="uid://c0p1j56abl26w" path="res://birds/Birds.tscn" id="13_rk5qm"]
-[ext_resource type="PackedScene" uid="uid://b3awg5wdm5xol" path="res://groundhog/GroundHog.tscn" id="14_r65s7"]
-[ext_resource type="PackedScene" uid="uid://cq2qftp7n45ms" path="res://airplane/AirPlane.tscn" id="15_qf2iq"]
+[ext_resource type="PackedScene" uid="uid://c1fa4m5wl7jog" path="res://entities/cow/Cow.tscn" id="8_yvqox"]
+[ext_resource type="PackedScene" uid="uid://c6exry1a7xhex" path="res://entities/chicken/Chicken.tscn" id="9_2jkje"]
+[ext_resource type="PackedScene" uid="uid://drevi0f0x5ap6" path="res://entities/bus/Bus.tscn" id="11_v2a1g"]
+[ext_resource type="PackedScene" uid="uid://cj5txfcf1u1l1" path="res://entities/cat/Cat.tscn" id="12_tgix4"]
+[ext_resource type="PackedScene" uid="uid://c0p1j56abl26w" path="res://entities/birds/Birds.tscn" id="13_rk5qm"]
+[ext_resource type="PackedScene" uid="uid://b3awg5wdm5xol" path="res://entities/groundhog/GroundHog.tscn" id="14_r65s7"]
+[ext_resource type="PackedScene" uid="uid://cq2qftp7n45ms" path="res://entities/airplane/AirPlane.tscn" id="15_qf2iq"]
+[ext_resource type="PackedScene" uid="uid://cagicku27amyn" path="res://entities/dog/Dog.tscn" id="16_vh5eh"]
+[ext_resource type="PackedScene" uid="uid://dnaxkh4di706o" path="res://entities/train/Train.tscn" id="17_w5huk"]
+[ext_resource type="PackedScene" uid="uid://q7vry04rtsqc" path="res://entities/digger/Digger.tscn" id="18_f3vjt"]
 
-[node name="Main" type="Node2D" node_paths=PackedStringArray("arrowRight")]
+[node name="Main" type="Node2D"]
 script = ExtResource("1_muxl5")
-arrowRight = NodePath("DirectionRight")
 
 [node name="Background" type="Node2D" parent="."]
 position = Vector2(0, -1)
@@ -83,6 +84,15 @@ position = Vector2(265, 590)
 [node name="AirPlane" parent="Background" instance=ExtResource("15_qf2iq")]
 position = Vector2(208, 178)
 
+[node name="Dog" parent="Background" instance=ExtResource("16_vh5eh")]
+position = Vector2(644, 538)
+
+[node name="Train" parent="Background" instance=ExtResource("17_w5huk")]
+position = Vector2(605, 387)
+
+[node name="Digger" parent="Background" instance=ExtResource("18_f3vjt")]
+position = Vector2(103, 559)
+
 [node name="DayColor" type="ColorRect" parent="Background"]
 offset_right = 40.0
 offset_bottom = 40.0
@@ -94,10 +104,5 @@ offset_right = 40.0
 offset_bottom = 40.0
 scale = Vector2(28.84, 16.2)
 color = Color(0.0196078, 0.0352941, 0.168627, 0.760784)
-
-[node name="DirectionRight" type="Sprite2D" parent="."]
-position = Vector2(392, 334)
-rotation = -3.14159
-texture = ExtResource("2_jvblf")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
