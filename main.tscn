@@ -1,6 +1,7 @@
-[gd_scene load_steps=19 format=3 uid="uid://bv87x84cfrbyp"]
+[gd_scene load_steps=20 format=3 uid="uid://bv87x84cfrbyp"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_muxl5"]
+[ext_resource type="Texture2D" uid="uid://dw3cky25gypt5" path="res://assets/background/1-night.png" id="2_43i1m"]
 [ext_resource type="Texture2D" uid="uid://bif3fr6pv6jhq" path="res://assets/background/1.png" id="3_mydq3"]
 [ext_resource type="Texture2D" uid="uid://blcwbld1r4ma" path="res://assets/background/3.png" id="4_4qynr"]
 [ext_resource type="Texture2D" uid="uid://urqi7jkgt4py" path="res://assets/background/2.png" id="4_n4pr0"]
@@ -25,18 +26,26 @@ script = ExtResource("1_muxl5")
 [node name="Background" type="Node2D" parent="."]
 position = Vector2(0, -1)
 
-[node name="Sky" type="Sprite2D" parent="Background"]
+[node name="SkyNight" type="Sprite2D" parent="Background"]
+visible = false
+position = Vector2(578, 326)
+scale = Vector2(2, 2)
+texture = ExtResource("2_43i1m")
+
+[node name="SkyDay" type="Sprite2D" parent="Background"]
 position = Vector2(576, 326)
 scale = Vector2(2, 2)
 texture = ExtResource("3_mydq3")
 
-[node name="CelestialObjects" type="Node2D" parent="Background" node_paths=PackedStringArray("sun", "moon", "dayColor", "nightColor")]
+[node name="CelestialObjects" type="Node2D" parent="Background" node_paths=PackedStringArray("sun", "moon", "dayColor", "nightColor", "skyDay", "skyNight")]
 position = Vector2(562, 303)
 script = ExtResource("6_jsfoj")
 sun = NodePath("Sun")
 moon = NodePath("Moon")
 dayColor = NodePath("../DayColor")
 nightColor = NodePath("../NightColor")
+skyDay = NodePath("../SkyDay")
+skyNight = NodePath("../SkyNight")
 
 [node name="Sun" type="Sprite2D" parent="Background/CelestialObjects"]
 position = Vector2(6, -226)
@@ -97,12 +106,12 @@ position = Vector2(103, 559)
 offset_right = 40.0
 offset_bottom = 40.0
 scale = Vector2(28.84, 16.2)
-color = Color(1, 1, 0.145098, 0.113725)
+color = Color(1, 1, 0.145098, 0.00392157)
 
 [node name="NightColor" type="ColorRect" parent="Background"]
-offset_right = 40.0
-offset_bottom = 40.0
-scale = Vector2(28.84, 16.2)
+offset_right = 1152.0
+offset_bottom = 648.0
 color = Color(0.0196078, 0.0352941, 0.168627, 0.760784)
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+rect = Rect2(0, 0, 20, 20)
