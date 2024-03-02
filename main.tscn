@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://bv87x84cfrbyp"]
+[gd_scene load_steps=30 format=3 uid="uid://bv87x84cfrbyp"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_muxl5"]
 [ext_resource type="Texture2D" uid="uid://dw3cky25gypt5" path="res://assets/background/1-night.png" id="2_43i1m"]
@@ -9,9 +9,11 @@
 [ext_resource type="Texture2D" uid="uid://urqi7jkgt4py" path="res://assets/background/2.png" id="4_n4pr0"]
 [ext_resource type="AudioStream" uid="uid://d1wqgfd42q18b" path="res://assets/background/ambience-day.mp3" id="5_55yh7"]
 [ext_resource type="Texture2D" uid="uid://c3hnkd4l4vt70" path="res://assets/background/sun.png" id="5_bw7mx"]
+[ext_resource type="Texture2D" uid="uid://cgg3ok22lsard" path="res://assets/background/day_gradient.tres" id="5_futo7"]
 [ext_resource type="Texture2D" uid="uid://wf62gr83rdfa" path="res://assets/background/moon.png" id="5_xociv"]
 [ext_resource type="Script" path="res://SkyDay.gd" id="6_8dnad"]
 [ext_resource type="Script" path="res://CelestialObjects.gd" id="6_jsfoj"]
+[ext_resource type="Texture2D" uid="uid://bbm6p0kjmpsxv" path="res://assets/background/night_gradient.tres" id="6_lgmir"]
 [ext_resource type="Texture2D" uid="uid://d0rov5fwlqvto" path="res://assets/background/4.png" id="7_ay8jm"]
 [ext_resource type="PackedScene" uid="uid://c1fa4m5wl7jog" path="res://entities/cow/Cow.tscn" id="8_yvqox"]
 [ext_resource type="PackedScene" uid="uid://c6exry1a7xhex" path="res://entities/chicken/Chicken.tscn" id="9_2jkje"]
@@ -24,6 +26,34 @@
 [ext_resource type="PackedScene" uid="uid://dnaxkh4di706o" path="res://entities/train/Train.tscn" id="17_w5huk"]
 [ext_resource type="PackedScene" uid="uid://q7vry04rtsqc" path="res://entities/digger/Digger.tscn" id="18_f3vjt"]
 [ext_resource type="PackedScene" uid="uid://dfhl5hr32cygu" path="res://entities/stormcloud/StormCloud.tscn" id="24_4l2w0"]
+
+[sub_resource type="Shader" id="Shader_h8xx0"]
+code = "shader_type canvas_item;
+
+uniform sampler2D top_gradient;
+uniform sampler2D bottom_gradient;
+uniform float time_of_day: hint_range(0.0, 1.0);
+
+void fragment() {
+    vec4 top = texture(top_gradient, vec2(time_of_day, 0.5));
+    vec4 bottom = texture(bottom_gradient, vec2(time_of_day, 0.5));
+    // Set the fragment color
+    COLOR = mix(top, bottom, pow((UV.y)*2.0, 2));
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hpdj5"]
+resource_local_to_scene = true
+shader = SubResource("Shader_h8xx0")
+shader_parameter/time_of_day = 0.399
+shader_parameter/top_gradient = ExtResource("6_lgmir")
+shader_parameter/bottom_gradient = ExtResource("5_futo7")
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_03ifq"]
+blend_mode = 3
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_v0uc4"]
+blend_mode = 3
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_muxl5")
@@ -42,7 +72,8 @@ stream = ExtResource("3_yluxt")
 volume_db = -4.0
 
 [node name="SkyDay" type="Sprite2D" parent="Background"]
-position = Vector2(576, 324)
+material = SubResource("ShaderMaterial_hpdj5")
+position = Vector2(576, 326)
 scale = Vector2(2, 2)
 texture = ExtResource("3_mydq3")
 script = ExtResource("6_8dnad")
@@ -120,15 +151,19 @@ position = Vector2(103, 559)
 position = Vector2(1034, 255)
 
 [node name="DayColor" type="ColorRect" parent="Background"]
+visible = false
+material = SubResource("CanvasItemMaterial_03ifq")
 offset_right = 40.0
 offset_bottom = 40.0
 scale = Vector2(28.84, 16.2)
 color = Color(1, 1, 0.145098, 0.00392157)
 
 [node name="NightColor" type="ColorRect" parent="Background"]
+visible = false
+material = SubResource("CanvasItemMaterial_v0uc4")
 offset_right = 1152.0
 offset_bottom = 648.0
-color = Color(0.0196078, 0.0352941, 0.168627, 0.760784)
+color = Color(0.113725, 0.156863, 0.470588, 0.760784)
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 rect = Rect2(0, 0, 20, 20)
