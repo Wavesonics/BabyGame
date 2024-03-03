@@ -18,9 +18,11 @@ var speed: float = 2.0
 var angle: float = PI
 
 var original_position: Vector2
+var sky_mat: ShaderMaterial
 
 func _ready():
 	original_position = position
+	sky_mat = (skyDay.material as ShaderMaterial)
 
 func _process(delta: float) -> void:
 	# Get joystick axis values (Assuming default joystick mappings).
@@ -53,22 +55,23 @@ func _process(delta: float) -> void:
 	# 1.0/0.0 is noon
 	# 0.5 is midnight
 	var percentDay = map_angle_to_unit_range(angle)
+	sky_mat.set_shader_parameter("time_of_day", percentDay)
 	
-	# Day time
-	if percentDay < 0.25 or percentDay > 0.75:
-		dayColor.color.a = 0.01
-		skyDay.show()
-	else:
-		dayColor.color.a = 0.0
-		skyDay.hide()
+	## Day time
+	#if percentDay < 0.25 or percentDay > 0.75:
+		#dayColor.color.a = 0.01
+		#skyDay.show()
+	#else:
+		#dayColor.color.a = 0.0
+		#skyDay.hide()
 	
-	# Night time
-	if percentDay > 0.25 and percentDay < 0.75:
-		nightColor.color.a = 0.5
-		skyNight.show()
-	else:
-		nightColor.color.a = 0.0
-		skyNight.hide()
+	## Night time
+	#if percentDay > 0.25 and percentDay < 0.75:
+		#nightColor.color.a = 0.5
+		#skyNight.show()
+	#else:
+		#nightColor.color.a = 0.0
+		#skyNight.hide()
 
 func map_angle_to_unit_range(angle):
 	# Offset the angle by 90 degrees (PI/2 radians)
