@@ -28,7 +28,6 @@
 script = ExtResource("1_muxl5")
 
 [node name="Background" type="Node2D" parent="."]
-position = Vector2(0, -1)
 
 [node name="SkyNight" type="Sprite2D" parent="Background"]
 visible = false
@@ -42,7 +41,7 @@ stream = ExtResource("3_yluxt")
 volume_db = -4.0
 
 [node name="SkyDay" type="Sprite2D" parent="Background"]
-position = Vector2(576, 326)
+position = Vector2(576, 324)
 scale = Vector2(2, 2)
 texture = ExtResource("3_mydq3")
 script = ExtResource("6_8dnad")
@@ -72,23 +71,23 @@ scale = Vector2(0.351562, 0.351562)
 texture = ExtResource("5_xociv")
 
 [node name="Background" type="Sprite2D" parent="Background"]
-position = Vector2(575, 326)
+position = Vector2(576, 324)
 scale = Vector2(2, 2)
 texture = ExtResource("4_n4pr0")
 
 [node name="Foreground" type="Sprite2D" parent="Background"]
-position = Vector2(577, 325)
+position = Vector2(576, 324)
 scale = Vector2(2, 2)
 texture = ExtResource("4_4qynr")
 
 [node name="Cow" parent="Background" instance=ExtResource("8_yvqox")]
-position = Vector2(1054, 516)
+position = Vector2(1044, 521)
 
 [node name="Chicken" parent="Background" instance=ExtResource("9_2jkje")]
 position = Vector2(422, 469)
 
 [node name="Clouds" type="Sprite2D" parent="Background"]
-position = Vector2(577, 326)
+position = Vector2(576, 324)
 scale = Vector2(2, 2)
 texture = ExtResource("7_ay8jm")
 
