@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://bv87x84cfrbyp"]
+[gd_scene load_steps=25 format=3 uid="uid://bv87x84cfrbyp"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_muxl5"]
 [ext_resource type="Texture2D" uid="uid://dw3cky25gypt5" path="res://assets/background/1-night.png" id="2_43i1m"]
@@ -23,6 +23,7 @@
 [ext_resource type="PackedScene" uid="uid://cagicku27amyn" path="res://entities/dog/Dog.tscn" id="16_vh5eh"]
 [ext_resource type="PackedScene" uid="uid://dnaxkh4di706o" path="res://entities/train/Train.tscn" id="17_w5huk"]
 [ext_resource type="PackedScene" uid="uid://q7vry04rtsqc" path="res://entities/digger/Digger.tscn" id="18_f3vjt"]
+[ext_resource type="PackedScene" uid="uid://dfhl5hr32cygu" path="res://entities/stormcloud/StormCloud.tscn" id="24_4l2w0"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_muxl5")
@@ -114,6 +115,9 @@ position = Vector2(605, 387)
 
 [node name="Digger" parent="Background" instance=ExtResource("18_f3vjt")]
 position = Vector2(103, 559)
+
+[node name="StormCloud" parent="Background" instance=ExtResource("24_4l2w0")]
+position = Vector2(1034, 255)
 
 [node name="DayColor" type="ColorRect" parent="Background"]
 offset_right = 40.0

@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://c86gfb4oawvf0"]
+
+[ext_resource type="Script" path="res://entities/popupEntity/PopupEntity.gd" id="1_x6ppc"]
+
+[node name="PopupEntity" type="Sprite2D"]
+script = ExtResource("1_x6ppc")
+
+[node name="SoundEffect" type="AudioStreamPlayer2D" parent="."]
