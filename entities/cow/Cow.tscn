@@ -1,13 +1,13 @@
 [gd_scene load_steps=4 format=3 uid="uid://c1fa4m5wl7jog"]
 
 [ext_resource type="Texture2D" uid="uid://cpo54yb3h4oqn" path="res://entities/cow/cows.png" id="1_reeoa"]
-[ext_resource type="Script" path="res://entities/cow/Cow.gd" id="2_1jhlh"]
+[ext_resource type="PackedScene" uid="uid://c86gfb4oawvf0" path="res://entities/popupEntity/PopupEntity.tscn" id="1_wdmk6"]
 [ext_resource type="AudioStream" uid="uid://cm1ollcuvicsj" path="res://entities/cow/cow.mp3" id="3_swge0"]
 
-[node name="B_cow" type="Sprite2D"]
+[node name="Cow" type="Node2D"]
 scale = Vector2(0.408601, 0.408601)
-texture = ExtResource("1_reeoa")
-script = ExtResource("2_1jhlh")
 
-[node name="MooAudio" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("3_swge0")
+[node name="PopupEntity" parent="." instance=ExtResource("1_wdmk6")]
+texture = ExtResource("1_reeoa")
+action = "controller_b"
+audioEffect = ExtResource("3_swge0")

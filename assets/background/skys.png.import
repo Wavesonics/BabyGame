@@ -1,0 +1,26 @@
+[remap]
+
+importer="2d_array_texture"
+type="CompressedTexture2DArray"
+uid="uid://bc27o11rtjcqx"
+path="res://.godot/imported/skys.png-ff5c85c17bb1d5e58448f35e89affd25.ctexarray"
+metadata={
+"vram_texture": false
+}
+
+[deps]
+
+source_file="res://assets/background/skys.png"
+dest_files=["res://.godot/imported/skys.png-ff5c85c17bb1d5e58448f35e89affd25.ctexarray"]
+
+[params]
+
+compress/mode=0
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/channel_pack=0
+mipmaps/generate=false
+mipmaps/limit=-1
+slices/horizontal=1
+slices/vertical=4

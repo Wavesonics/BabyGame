@@ -1,0 +1,47 @@
+[gd_scene load_steps=8 format=3 uid="uid://dfhl5hr32cygu"]
+
+[ext_resource type="Texture2D" uid="uid://brrgyyqyeoabv" path="res://entities/stormcloud/stormcloud.png" id="1_0cj6o"]
+[ext_resource type="PackedScene" uid="uid://c86gfb4oawvf0" path="res://entities/popupEntity/PopupEntity.tscn" id="1_hy76q"]
+[ext_resource type="Script" path="res://entities/stormcloud/StormCloud.gd" id="1_u3tsm"]
+[ext_resource type="AudioStream" uid="uid://cs7lolf443w7v" path="res://entities/stormcloud/thunder.mp3" id="3_3x8ky"]
+[ext_resource type="Texture2D" uid="uid://cqajfnyait58d" path="res://assets/2d_lights_and_shadows_neutral_point_light.webp" id="5_g5l3i"]
+
+[sub_resource type="Animation" id="Animation_7ukb7"]
+resource_name = "lightning"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Lightning:energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 0.9, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 8.0, 2.0, 6.0, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bi73o"]
+_data = {
+"lightning": SubResource("Animation_7ukb7")
+}
+
+[node name="StormCloud" type="Node2D"]
+scale = Vector2(0.286049, 0.286049)
+script = ExtResource("1_u3tsm")
+
+[node name="PopupEntity" parent="." instance=ExtResource("1_hy76q")]
+texture = ExtResource("1_0cj6o")
+action = "controller_right_bumper"
+audioEffect = ExtResource("3_3x8ky")
+
+[node name="Lightning" type="PointLight2D" parent="."]
+energy = 0.0
+texture = ExtResource("5_g5l3i")
+texture_scale = 1.25
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_bi73o")
+}

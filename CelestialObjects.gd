@@ -2,11 +2,13 @@ extends Node2D
 
 @export var sun: Sprite2D
 @export var moon: Sprite2D
-@export var dayColor: ColorRect
-@export var nightColor: ColorRect
-@export var skyDay: Sprite2D
-@export var skyNight: Sprite2D
+@export var sky: Sprite2D
+@export var canvas: CanvasModulate
+@export var fireFlies: CPUParticles2D
 
+@onready var sunLight: PointLight2D = sun.find_child("PointLight2D")
+@onready var moonLight: PointLight2D = moon.find_child("PointLight2D")
+@onready var startDarkColor: Color = canvas.color
 
 # The radius of the circle along which the sprite will move.
 var radius: float = 250.0
@@ -15,12 +17,14 @@ var radius: float = 250.0
 var speed: float = 2.0
 
 # Current angle of the sprite around the circle in radians.
-var angle: float = PI
+var curAngle: float = PI
 
 var original_position: Vector2
+var sky_mat: ShaderMaterial
 
 func _ready():
 	original_position = position
+	sky_mat = (sky.material as ShaderMaterial)
 
 func _process(delta: float) -> void:
 	# Get joystick axis values (Assuming default joystick mappings).
@@ -30,45 +34,53 @@ func _process(delta: float) -> void:
 	# Dead zone for stick drift
 	if abs(axis_value) > 0.1:
 		# Update the angle based on the joystick's horizontal input.
-		angle += speed * axis_value * delta
+		curAngle += speed * axis_value * delta
 	# If no stick input, animate on our own
 	else:
-		angle += 0.0005
+		curAngle += 0.0005
 	
-	angle = wrapf(angle, -PI, PI)
+	curAngle = wrapf(curAngle, 0, 2*PI)
 	
 	# Calculate the new position using polar to cartesian conversion.
-	var sunX = radius * cos(angle)*1.5
-	var sunY = radius * sin(angle)
+	var sunX = radius * cos(curAngle)*1.5
+	var sunY = radius * sin(curAngle)
 	
-		# Calculate the new position using polar to cartesian conversion.
-	var moonX = radius * cos(angle)*1.5 * -1
-	var moonY = radius * sin(angle) * -1
+	# Calculate the new position using polar to cartesian conversion.
+	var moonX = radius * cos(curAngle)*1.5 * -1
+	var moonY = radius * sin(curAngle) * -1
 	
 	# Update the sprite's position.
 	sun.global_position = Vector2(500, 400) + Vector2(sunX, sunY)
 	moon.global_position = Vector2(500, 400) + Vector2(moonX, moonY)
 	
 	# Now update the day color
+	# 0.75 is dawn
 	# 1.0/0.0 is noon
+	# 0.25 is dusk
 	# 0.5 is midnight
-	var percentDay = map_angle_to_unit_range(angle)
+	var percentDay = map_angle_to_unit_range(curAngle)
+	sky_mat.set_shader_parameter("time_of_day", percentDay)
+
+	var t = sin(curAngle) * -1
+	sunLight.energy = clamp(t, 0, 1)
+	moonLight.energy = clamp(t * -1, 0, 1)
+	canvas.color = Color.WHITE.lerp(startDarkColor, moonLight.energy)
 	
 	# Day time
 	if percentDay < 0.25 or percentDay > 0.75:
-		dayColor.color.a = 0.01
-		skyDay.show()
-	else:
-		dayColor.color.a = 0.0
-		skyDay.hide()
-	
+		if $NightAmbience.is_playing():
+			$DayAmbience.play()
+			$NightAmbience.stop()
+			fireFlies.emitting = false
 	# Night time
-	if percentDay > 0.25 and percentDay < 0.75:
-		nightColor.color.a = 0.5
-		skyNight.show()
 	else:
-		nightColor.color.a = 0.0
-		skyNight.hide()
+		if $DayAmbience.is_playing():
+			$DayAmbience.stop()
+			$NightAmbience.play()
+		if not fireFlies.emitting and percentDay > 0.3 and percentDay <= 0.7:
+			fireFlies.emitting = true
+		elif fireFlies.emitting and percentDay > 0.7:
+			fireFlies.emitting = false
 
 func map_angle_to_unit_range(angle):
 	# Offset the angle by 90 degrees (PI/2 radians)

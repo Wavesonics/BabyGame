@@ -51,6 +51,11 @@ jobs:
      mkdir -p ./exports/Web
      ./godot --headless --path ./ --export-release "Web" ./exports/Web/index.html
     
+  - name: Export Windows Desktop
+    run: |
+     mkdir -p ./exports/Windows
+     ./godot --headless --path ./ --export-release "Windows Desktop" ./exports/Windows/BabyGame.exe
+    
 
   - uses: actions/upload-artifact@v2
     with:
@@ -133,6 +138,9 @@ jobs:
     
     - name: Push Web to Itch
       run: ./butler push ./exports/Web stumpy-dog-studios/baby-game:web --userversion-file ./VERSION/VERSION.txt
+    
+    - name: Push Windows Desktop to Itch
+      run: ./butler push ./exports/Windows stumpy-dog-studios/baby-game:win --userversion-file ./VERSION/VERSION.txt
     
 
  Cleanup:

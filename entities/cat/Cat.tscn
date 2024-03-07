@@ -1,13 +1,13 @@
 [gd_scene load_steps=4 format=3 uid="uid://cj5txfcf1u1l1"]
 
-[ext_resource type="Script" path="res://entities/cat/Cat.gd" id="1_1s0ru"]
+[ext_resource type="PackedScene" uid="uid://c86gfb4oawvf0" path="res://entities/popupEntity/PopupEntity.tscn" id="1_0liqi"]
 [ext_resource type="Texture2D" uid="uid://cvp8i7hp0cq7e" path="res://entities/cat/cat.png" id="1_dhqk7"]
 [ext_resource type="AudioStream" uid="uid://drymrjvlwx7ma" path="res://entities/cat/meow.mp3" id="3_mrxqo"]
 
-[node name="Cat" type="Sprite2D"]
+[node name="Cat" type="Node2D"]
 scale = Vector2(0.195, 0.195)
-texture = ExtResource("1_dhqk7")
-script = ExtResource("1_1s0ru")
 
-[node name="Meow" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("3_mrxqo")
+[node name="PopupEntity" parent="." instance=ExtResource("1_0liqi")]
+texture = ExtResource("1_dhqk7")
+action = "controller_y"
+audioEffect = ExtResource("3_mrxqo")
