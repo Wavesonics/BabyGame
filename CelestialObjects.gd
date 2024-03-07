@@ -4,6 +4,7 @@ extends Node2D
 @export var moon: Sprite2D
 @export var sky: Sprite2D
 @export var canvas: CanvasModulate
+@export var fireFlies: CPUParticles2D
 
 @onready var sunLight: PointLight2D = sun.find_child("PointLight2D")
 @onready var moonLight: PointLight2D = moon.find_child("PointLight2D")
@@ -70,11 +71,16 @@ func _process(delta: float) -> void:
 		if $NightAmbience.is_playing():
 			$DayAmbience.play()
 			$NightAmbience.stop()
+			fireFlies.emitting = false
 	# Night time
 	else:
 		if $DayAmbience.is_playing():
 			$DayAmbience.stop()
 			$NightAmbience.play()
+		if not fireFlies.emitting and percentDay > 0.3 and percentDay <= 0.7:
+			fireFlies.emitting = true
+		elif fireFlies.emitting and percentDay > 0.7:
+			fireFlies.emitting = false
 
 func map_angle_to_unit_range(angle):
 	# Offset the angle by 90 degrees (PI/2 radians)
