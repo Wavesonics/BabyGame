@@ -3,8 +3,11 @@ extends Node2D
 @export var sun: Sprite2D
 @export var moon: Sprite2D
 @export var sky: Sprite2D
-@export var dayColor: ColorRect
-@export var nightColor: ColorRect
+@export var canvas: CanvasModulate
+
+@onready var sunLight: PointLight2D = sun.find_child("PointLight2D")
+@onready var moonLight: PointLight2D = moon.find_child("PointLight2D")
+@onready var startDarkColor: Color = canvas.color
 
 # The radius of the circle along which the sprite will move.
 var radius: float = 250.0
@@ -35,7 +38,7 @@ func _process(delta: float) -> void:
 	else:
 		curAngle += 0.0005
 	
-	curAngle = wrapf(curAngle, -PI, PI)
+	curAngle = wrapf(curAngle, 0, 2*PI)
 	
 	# Calculate the new position using polar to cartesian conversion.
 	var sunX = radius * cos(curAngle)*1.5
@@ -56,33 +59,22 @@ func _process(delta: float) -> void:
 	# 0.5 is midnight
 	var percentDay = map_angle_to_unit_range(curAngle)
 	sky_mat.set_shader_parameter("time_of_day", percentDay)
+
+	var t = sin(curAngle) * -1
+	sunLight.energy = clamp(t, 0, 1)
+	moonLight.energy = clamp(t * -1, 0, 1)
+	canvas.color = Color.WHITE.lerp(startDarkColor, moonLight.energy)
 	
 	# Day time
 	if percentDay < 0.25 or percentDay > 0.75:
 		if $NightAmbience.is_playing():
 			$DayAmbience.play()
 			$NightAmbience.stop()
-		dayColor.show()
-		nightColor.hide()
-		if percentDay > 0.5:
-			var percentDawn = clampf(((percentDay - 0.75) / 0.25), 0.0, 1.0)
-			dayColor.modulate.a = percentDawn
-		else:
-			var percentDusk = clampf(((0.25 - percentDay) / 0.25), 0.0, 1.0)
-			dayColor.modulate.a = percentDusk
 	# Night time
 	else:
 		if $DayAmbience.is_playing():
 			$DayAmbience.stop()
 			$NightAmbience.play()
-		dayColor.hide()
-		nightColor.show()
-		if percentDay < 0.5:
-			var percentDusk = clampf(1.0 - ((0.5 - percentDay)/0.25), 0.0, 1.0)
-			nightColor.modulate.a = percentDusk
-		else:
-			var percentDawn = clampf(((0.75 - percentDay)/0.25), 0.0, 1.0)
-			nightColor.modulate.a = percentDawn
 
 func map_angle_to_unit_range(angle):
 	# Offset the angle by 90 degrees (PI/2 radians)

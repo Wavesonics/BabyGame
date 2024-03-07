@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://bv87x84cfrbyp"]
+[gd_scene load_steps=26 format=3 uid="uid://bv87x84cfrbyp"]
 
 [ext_resource type="Texture2D" uid="uid://bif3fr6pv6jhq" path="res://assets/background/1.png" id="3_mydq3"]
 [ext_resource type="AudioStream" uid="uid://b4w0c6h1u88mj" path="res://assets/background/ambience-night.mp3" id="3_yluxt"]
@@ -10,6 +10,7 @@
 [ext_resource type="CompressedTexture2DArray" uid="uid://bc27o11rtjcqx" path="res://assets/background/skys.png" id="5_n0qxx"]
 [ext_resource type="Texture2D" uid="uid://wf62gr83rdfa" path="res://assets/background/moon.png" id="5_xociv"]
 [ext_resource type="Script" path="res://CelestialObjects.gd" id="6_jsfoj"]
+[ext_resource type="Texture2D" uid="uid://cmmlg2m4nc16n" path="res://assets/light.png" id="6_ufahw"]
 [ext_resource type="Texture2D" uid="uid://d0rov5fwlqvto" path="res://assets/background/4.png" id="7_ay8jm"]
 [ext_resource type="PackedScene" uid="uid://c1fa4m5wl7jog" path="res://entities/cow/Cow.tscn" id="8_yvqox"]
 [ext_resource type="PackedScene" uid="uid://c6exry1a7xhex" path="res://entities/chicken/Chicken.tscn" id="9_2jkje"]
@@ -51,24 +52,34 @@ scale = Vector2(2, 2)
 texture = ExtResource("3_mydq3")
 script = SubResource("GDScript_csktl")
 
-[node name="CelestialObjects" type="Node2D" parent="Background" node_paths=PackedStringArray("sun", "moon", "sky", "dayColor", "nightColor")]
+[node name="CelestialObjects" type="Node2D" parent="Background" node_paths=PackedStringArray("sun", "moon", "sky", "canvas")]
 position = Vector2(562, 303)
 script = ExtResource("6_jsfoj")
 sun = NodePath("Sun")
 moon = NodePath("Moon")
 sky = NodePath("../Sky")
-dayColor = NodePath("../../Control/DayColor")
-nightColor = NodePath("../../Control/NightColor")
+canvas = NodePath("../../CanvasModulate")
 
 [node name="Sun" type="Sprite2D" parent="Background/CelestialObjects"]
 position = Vector2(6, -226)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("5_bw7mx")
 
+[node name="PointLight2D" type="PointLight2D" parent="Background/CelestialObjects/Sun"]
+scale = Vector2(2, 2)
+color = Color(1, 1, 0.478431, 0.301961)
+energy = 0.42
+texture = ExtResource("6_ufahw")
+
 [node name="Moon" type="Sprite2D" parent="Background/CelestialObjects"]
 position = Vector2(-3, 323)
 scale = Vector2(0.351562, 0.351562)
 texture = ExtResource("5_xociv")
+
+[node name="PointLight2D" type="PointLight2D" parent="Background/CelestialObjects/Moon"]
+scale = Vector2(2.84445, 2.84445)
+shadow_enabled = true
+texture = ExtResource("6_ufahw")
 
 [node name="DayAmbience" type="AudioStreamPlayer" parent="Background/CelestialObjects"]
 stream = ExtResource("5_55yh7")
@@ -127,32 +138,5 @@ position = Vector2(103, 559)
 [node name="StormCloud" parent="Background" instance=ExtResource("24_4l2w0")]
 position = Vector2(1034, 255)
 
-[node name="Control" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = 1152.0
-offset_bottom = 648.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="DayColor" type="ColorRect" parent="Control"]
-visible = false
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(1, 1, 0.145098, 0.117647)
-
-[node name="NightColor" type="ColorRect" parent="Control"]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.113725, 0.156863, 0.333333, 0.745098)
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.113725, 0.156863, 0.384314, 1)
