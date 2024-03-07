@@ -1,13 +1,13 @@
 [gd_scene load_steps=4 format=3 uid="uid://b3awg5wdm5xol"]
 
 [ext_resource type="Texture2D" uid="uid://cwu03osrndpwg" path="res://entities/groundhog/groundhog.png" id="1_n24w8"]
-[ext_resource type="Script" path="res://entities/groundhog/GroundHog.gd" id="2_nqpme"]
+[ext_resource type="PackedScene" uid="uid://c86gfb4oawvf0" path="res://entities/popupEntity/PopupEntity.tscn" id="1_ohehb"]
 [ext_resource type="AudioStream" uid="uid://cci2cwatmi6r1" path="res://entities/groundhog/squeek.mp3" id="3_kobj4"]
 
-[node name="GroundHog" type="Sprite2D"]
+[node name="GroundHog" type="Node2D"]
 scale = Vector2(0.130645, 0.130645)
-texture = ExtResource("1_n24w8")
-script = ExtResource("2_nqpme")
 
-[node name="Squeek" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("3_kobj4")
+[node name="PopupEntity" parent="." instance=ExtResource("1_ohehb")]
+texture = ExtResource("1_n24w8")
+action = "controller_down"
+audioEffect = ExtResource("3_kobj4")

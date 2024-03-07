@@ -1,13 +1,13 @@
 [gd_scene load_steps=4 format=3 uid="uid://q7vry04rtsqc"]
 
-[ext_resource type="Script" path="res://entities/digger/Digger.gd" id="1_0ddp4"]
+[ext_resource type="PackedScene" uid="uid://c86gfb4oawvf0" path="res://entities/popupEntity/PopupEntity.tscn" id="1_8b8fm"]
 [ext_resource type="Texture2D" uid="uid://d0mga3bsryhtb" path="res://entities/digger/digger.png" id="1_rwa2x"]
 [ext_resource type="AudioStream" uid="uid://c4acsph68u61p" path="res://entities/digger/digger.mp3" id="2_jdiik"]
 
-[node name="Digger" type="Sprite2D"]
+[node name="Digger" type="Node2D"]
 scale = Vector2(0.33424, 0.33424)
-texture = ExtResource("1_rwa2x")
-script = ExtResource("1_0ddp4")
 
-[node name="Noise" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("2_jdiik")
+[node name="PopupEntity" parent="." instance=ExtResource("1_8b8fm")]
+texture = ExtResource("1_rwa2x")
+action = "controller_right"
+audioEffect = ExtResource("2_jdiik")

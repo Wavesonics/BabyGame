@@ -6,11 +6,11 @@ var action: String
 
 @export
 var audioEffect: AudioStream
-	#set(value):
-		#$SoundEffect.stream = value
 
 @onready
 var audio: AudioStreamPlayer2D = $SoundEffect
+@onready
+var animPlayer: AnimationPlayer = $AnimationPlayer
 
 func _ready():
 	hide()
@@ -23,4 +23,7 @@ func _on_visibility_changes():
 
 func _input(event):
 	if event.is_action_released(action):
-		visible = !visible
+		if visible:
+			animPlayer.play("popdown")
+		else:
+			animPlayer.play("popup")

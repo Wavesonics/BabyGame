@@ -1,13 +1,13 @@
 [gd_scene load_steps=4 format=3 uid="uid://cq2qftp7n45ms"]
 
-[ext_resource type="Script" path="res://entities/airplane/AirPlane.gd" id="1_1tj6h"]
+[ext_resource type="PackedScene" uid="uid://c86gfb4oawvf0" path="res://entities/popupEntity/PopupEntity.tscn" id="1_ec2b1"]
 [ext_resource type="Texture2D" uid="uid://bfhk1igadialf" path="res://entities/airplane/airplane.png" id="1_lw3eh"]
 [ext_resource type="AudioStream" uid="uid://2egaeos3jena" path="res://entities/airplane/airplane.mp3" id="3_ft461"]
 
-[node name="AirPlane" type="Sprite2D"]
+[node name="AirPlane" type="Node2D"]
 scale = Vector2(0.427892, 0.427892)
-texture = ExtResource("1_lw3eh")
-script = ExtResource("1_1tj6h")
 
-[node name="PlaneNoise" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("3_ft461")
+[node name="PopupEntity" parent="." instance=ExtResource("1_ec2b1")]
+texture = ExtResource("1_lw3eh")
+action = "controller_left"
+audioEffect = ExtResource("3_ft461")
