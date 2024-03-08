@@ -1,10 +1,12 @@
 shader_type canvas_item;
 
-//uniform sampler2D top_gradient;
 uniform sampler2DArray crossfade_images;
+uniform sampler2D stars: filter_nearest, repeat_enable;
 uniform float time_of_day: hint_range(0.0, 1.0);
 uniform float time_offset: hint_range(0.0, 1.0);
 uniform int num_images;
+uniform float twinkle_speed: hint_range(0.0, 1.0);
+uniform float star_brightness: hint_range(0.0, 25.0);
 
 // Define your periods' start and end times (these should be sorted)
 const float periods[] = {0.0, 0.45, 0.55, 0.9, 1.0001};
@@ -31,5 +33,15 @@ void fragment() {
 	// Apply smoothstep for a smoother transition
     //float span_mix = smoothstep(0.75, 1.0, localTimeFactor); // Adjust the range if needed
     float span_mix = smoothstep(localEnd - 0.1, localEnd, tod); // Adjust the range if needed
-	COLOR = mix(first, second, span_mix);
+	
+	// stars
+	vec2 rSpeed = mod(TIME * twinkle_speed, 1.0) * vec2(0, 1);
+	vec2 gSpeed = mod(TIME * twinkle_speed*1.1, 1.0) * vec2(1, 1);
+	float r = texture(stars, UV + rSpeed).r;
+	float g = texture(stars, UV + gSpeed).g;
+	float b = texture(stars, UV).b;
+	
+	float starBrighness = r * g * b * star_brightness;
+	vec4 starColor = vec4(starBrighness, starBrighness, starBrighness, 1);
+	COLOR = mix(first, second, span_mix) + starColor;
 }
