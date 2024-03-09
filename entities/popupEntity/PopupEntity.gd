@@ -27,3 +27,7 @@ func _input(event):
 			animPlayer.play("popdown")
 		else:
 			animPlayer.play("popup")
+
+func vibrate():
+	Input.vibrate_handheld()
+	Input.start_joy_vibration(0, 1, 1, 0.25)

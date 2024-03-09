@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bxq2bpo0wtf61"
-path="res://.godot/imported/sun.png-2a81dd8faa1875942d706feeeee38fa2.ctex"
+uid="uid://cpegitr1e4whs"
+path="res://.godot/imported/bird.png-ee75460117dfa24ba0ea3092d4a9474c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/background/sun.png"
-dest_files=["res://.godot/imported/sun.png-2a81dd8faa1875942d706feeeee38fa2.ctex"]
+source_file="res://entities/bird/bird.png"
+dest_files=["res://.godot/imported/bird.png-ee75460117dfa24ba0ea3092d4a9474c.ctex"]
 
 [params]
 

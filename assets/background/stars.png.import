@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bxq2bpo0wtf61"
-path="res://.godot/imported/sun.png-2a81dd8faa1875942d706feeeee38fa2.ctex"
+uid="uid://ba8k28odospj4"
+path="res://.godot/imported/stars.png-f91c33c03669329419ba442cee8a7aea.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/background/sun.png"
-dest_files=["res://.godot/imported/sun.png-2a81dd8faa1875942d706feeeee38fa2.ctex"]
+source_file="res://assets/background/stars.png"
+dest_files=["res://.godot/imported/stars.png-f91c33c03669329419ba442cee8a7aea.ctex"]
 
 [params]
 
@@ -25,8 +25,8 @@ mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
-process/fix_alpha_border=true
-process/premult_alpha=false
+process/fix_alpha_border=false
+process/premult_alpha=true
 process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
