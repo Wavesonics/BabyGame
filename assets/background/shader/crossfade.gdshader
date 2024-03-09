@@ -1,6 +1,6 @@
 shader_type canvas_item;
 
-uniform sampler2DArray crossfade_images;
+uniform sampler2D crossfade_images;
 uniform sampler2D stars: filter_nearest, repeat_enable;
 uniform float time_of_day: hint_range(0.0, 1.0);
 uniform float time_offset: hint_range(0.0, 1.0);
@@ -27,8 +27,8 @@ void fragment() {
     float localEnd = periods[currentPeriod + 1];
 
 	// Determine which images to blend based on the current period
-    vec4 first = texture(crossfade_images, vec3(UV.xy, float(currentPeriod % num_images)));
-    vec4 second = texture(crossfade_images, vec3(UV.xy, float((currentPeriod + 1) % num_images)));
+    vec4 first = texture(crossfade_images, vec2(UV.x, (float(currentPeriod % num_images) + UV.y) / float(num_images)));
+    vec4 second = texture(crossfade_images, vec2(UV.x, (float((currentPeriod + 1) % num_images) + UV.y) / float(num_images)));
     
 	// Apply smoothstep for a smoother transition
     //float span_mix = smoothstep(0.75, 1.0, localTimeFactor); // Adjust the range if needed
