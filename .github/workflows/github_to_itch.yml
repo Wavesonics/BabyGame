@@ -70,7 +70,7 @@ jobs:
  Release:
   needs: Export
   if: ${{ contains(github.ref, 'main') }}
-  runs-on: windows-latest
+  runs-on: ubuntu-latest
   steps:
     - uses: actions/checkout@v2
    
