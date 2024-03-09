@@ -56,6 +56,11 @@ jobs:
      mkdir -p ./exports/Windows
      ./godot --headless --path ./ --export-release "Windows Desktop" ./exports/Windows/BabyGame.exe
     
+  - name: Export Linux/X11
+    run: |
+     mkdir -p ./exports/Linux
+     ./godot --headless --path ./ --export-release "Linux/X11" ./exports/Linux/BabyGame.x86_64
+    
 
   - uses: actions/upload-artifact@v2
     with:
@@ -141,6 +146,9 @@ jobs:
     
     - name: Push Windows Desktop to Itch
       run: ./butler push ./exports/Windows stumpy-dog-studios/baby-game:win --userversion-file ./VERSION/VERSION.txt
+    
+    - name: Push Linux/X11 to Itch
+      run: ./butler push ./exports/Linux stumpy-dog-studios/baby-game:linux --userversion-file ./VERSION/VERSION.txt
     
 
  Cleanup:

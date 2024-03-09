@@ -2,36 +2,6 @@
 
 [ext_resource type="Script" path="res://entities/popupEntity/PopupEntity.gd" id="1_x6ppc"]
 
-[sub_resource type="Animation" id="Animation_xufpb"]
-resource_name = "popup"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(1, 0), Vector2(1, 1.25), Vector2(1, 1)]
-}
-tracks/1/type = "method"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"show"
-}]
-}
-
 [sub_resource type="Animation" id="Animation_k5aco"]
 resource_name = "popdown"
 length = 0.5
@@ -62,6 +32,39 @@ tracks/1/keys = {
 }]
 }
 
+[sub_resource type="Animation" id="Animation_xufpb"]
+resource_name = "popup"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 0), Vector2(1, 1.25), Vector2(1, 1)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"show"
+}, {
+"args": [],
+"method": &"vibrate"
+}]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4s2jd"]
 _data = {
 "popdown": SubResource("Animation_k5aco"),
@@ -69,7 +72,6 @@ _data = {
 }
 
 [node name="PopupEntity" type="Sprite2D"]
-scale = Vector2(1, 1e-05)
 script = ExtResource("1_x6ppc")
 
 [node name="SoundEffect" type="AudioStreamPlayer2D" parent="."]
