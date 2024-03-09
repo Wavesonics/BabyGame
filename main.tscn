@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://bv87x84cfrbyp"]
+[gd_scene load_steps=34 format=3 uid="uid://bv87x84cfrbyp"]
 
 [ext_resource type="Texture2D" uid="uid://bif3fr6pv6jhq" path="res://assets/background/1.png" id="3_mydq3"]
 [ext_resource type="Texture2D" uid="uid://ba8k28odospj4" path="res://assets/background/stars.png" id="3_ojadd"]
@@ -30,11 +30,11 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hpdj5"]
 resource_local_to_scene = true
 shader = ExtResource("4_pahp2")
-shader_parameter/time_of_day = 0.319
+shader_parameter/time_of_day = 0.143
 shader_parameter/time_offset = 0.19
 shader_parameter/num_images = 4
-shader_parameter/twinkle_speed = 0.309
-shader_parameter/star_brightness = 2.38
+shader_parameter/twinkle_speed = 0.224
+shader_parameter/star_brightness = 3.69
 shader_parameter/crossfade_images = ExtResource("5_n0qxx")
 shader_parameter/stars = ExtResource("3_ojadd")
 
