@@ -54,7 +54,7 @@ jobs:
   - name: Export Windows Desktop
     run: |
      mkdir -p ./exports/Windows
-     ./godot --headless --path ./ --export-release "Windows Desktop" ./exports/Windows/BabyGame.exe
+     ./godot --headless --path ./ --export-release "Windows" ./exports/Windows/BabyGame.exe
     
   - name: Export Linux/X11
     run: |
