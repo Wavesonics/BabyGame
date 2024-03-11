@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://cohckalqhx0ys"]
+
+[ext_resource type="Script" path="res://entities/whale/Whale.gd" id="1_v5t1a"]
+[ext_resource type="Texture2D" uid="uid://b7fkghf87500g" path="res://entities/whale/whale.png" id="2_7aw3g"]
+[ext_resource type="Texture2D" uid="uid://ck005k1wik173" path="res://entities/whale/water-splash.png" id="3_m0fkm"]
+[ext_resource type="AudioStream" uid="uid://dcyoju7wxsml5" path="res://entities/whale/water.mp3" id="4_kh7au"]
+
+[node name="Whale" type="Node2D"]
+script = ExtResource("1_v5t1a")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_7aw3g")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="Sprite2D"]
+position = Vector2(98, -28)
+scale = Vector2(2, 2)
+amount = 24
+lifetime = 2.0
+texture = ExtResource("3_m0fkm")
+direction = Vector2(0, -1)
+spread = 3.0
+initial_velocity_min = 777.0
+initial_velocity_max = 777.0
+damping_min = 5.051
+damping_max = 5.051
+color = Color(0.0745098, 1, 1, 0.596078)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_kh7au")
