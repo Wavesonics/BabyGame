@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b1bbqft23g5oi"
-path="res://.godot/imported/groundhog.png-71944163db419a7742503fb89a2d6a9f.ctex"
+uid="uid://cwu03osrndpwg"
+path="res://.godot/imported/Squirrel.png-864cb5d0e8c678e19c3c91c8046913bd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://entities/groundhog/groundhog.png"
-dest_files=["res://.godot/imported/groundhog.png-71944163db419a7742503fb89a2d6a9f.ctex"]
+source_file="res://entities/squirrel/Squirrel.png"
+dest_files=["res://.godot/imported/Squirrel.png-864cb5d0e8c678e19c3c91c8046913bd.ctex"]
 
 [params]
 

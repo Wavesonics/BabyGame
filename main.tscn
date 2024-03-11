@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://bv87x84cfrbyp"]
+[gd_scene load_steps=36 format=3 uid="uid://bv87x84cfrbyp"]
 
 [ext_resource type="Texture2D" uid="uid://c67pis7ntnxhi" path="res://assets/background/sky_combined.png" id="2_s1g8g"]
 [ext_resource type="Texture2D" uid="uid://bif3fr6pv6jhq" path="res://assets/background/1.png" id="3_mydq3"]
@@ -18,7 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://drevi0f0x5ap6" path="res://entities/bus/Bus.tscn" id="11_v2a1g"]
 [ext_resource type="PackedScene" uid="uid://cj5txfcf1u1l1" path="res://entities/cat/Cat.tscn" id="12_tgix4"]
 [ext_resource type="PackedScene" uid="uid://c0p1j56abl26w" path="res://entities/birds/Birds.tscn" id="13_rk5qm"]
-[ext_resource type="PackedScene" uid="uid://b3awg5wdm5xol" path="res://entities/groundhog/GroundHog.tscn" id="14_r65s7"]
+[ext_resource type="PackedScene" uid="uid://b3awg5wdm5xol" path="res://entities/squirrel/Squirrel.tscn" id="14_r65s7"]
 [ext_resource type="PackedScene" uid="uid://cq2qftp7n45ms" path="res://entities/airplane/AirPlane.tscn" id="15_qf2iq"]
 [ext_resource type="PackedScene" uid="uid://cagicku27amyn" path="res://entities/dog/Dog.tscn" id="16_vh5eh"]
 [ext_resource type="PackedScene" uid="uid://dnaxkh4di706o" path="res://entities/train/Train.tscn" id="17_w5huk"]
@@ -26,6 +26,8 @@
 [ext_resource type="PackedScene" uid="uid://dfhl5hr32cygu" path="res://entities/stormcloud/StormCloud.tscn" id="24_4l2w0"]
 [ext_resource type="Texture2D" uid="uid://17ckuce3u73x" path="res://assets/firefly.png" id="24_leo13"]
 [ext_resource type="PackedScene" uid="uid://b8k250m1utdnn" path="res://entities/bird/Bird.tscn" id="25_i8a1e"]
+[ext_resource type="PackedScene" uid="uid://hcew2oy15qi4" path="res://entities/groundhog/Groundhog.tscn" id="27_keswf"]
+[ext_resource type="Texture2D" uid="uid://b1bbqft23g5oi" path="res://entities/groundhog/groundhog.png" id="28_ohofs"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hpdj5"]
 resource_local_to_scene = true
@@ -126,7 +128,7 @@ texture = ExtResource("4_4qynr")
 position = Vector2(1044, 521)
 
 [node name="Chicken" parent="Background" instance=ExtResource("9_2jkje")]
-position = Vector2(422, 469)
+position = Vector2(414, 425)
 
 [node name="Clouds" type="Sprite2D" parent="Background"]
 position = Vector2(576, 324)
@@ -183,6 +185,10 @@ color_ramp = SubResource("Gradient_tuvj8")
 [node name="Bird" parent="Background" instance=ExtResource("25_i8a1e")]
 position = Vector2(821, 304)
 
+[node name="Groundhog" parent="Background" instance=ExtResource("27_keswf")]
+position = Vector2(461, 562)
+scale = Vector2(0.75, 0.75)
+
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0.113725, 0.156863, 0.384314, 1)
 
@@ -217,3 +223,7 @@ physics_material_override = SubResource("PhysicsMaterial_oa135")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/WallBottom"]
 position = Vector2(0, -9.375)
 shape = SubResource("RectangleShape2D_nd2cf")
+
+[node name="Groundhog" type="Sprite2D" parent="."]
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("28_ohofs")
